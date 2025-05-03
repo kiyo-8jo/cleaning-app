@@ -3,12 +3,12 @@
 import { usePathname } from "next/navigation";
 
 const DisplayCurrentPage = () => {
-  const params = usePathname();
+  const path = usePathname();
 
   let displayWords = "ホーム画面";
 
   const displayPath = () => {
-    switch (params) {
+    switch (path) {
       case "/front":
         displayWords = "フロント用画面";
         break;
