@@ -1,5 +1,6 @@
 import DisplayCurrentPage from "@/app/components/header/DisplayCurrentPage";
 import Today from "@/app/components/header/Today";
+import ToHomePage from "@/app/components/header/ToHomePage";
 
 const Header = () => {
   return (
@@ -11,7 +12,7 @@ const Header = () => {
         <DisplayCurrentPage />
       </div>
       <div className="flex flex-1/3 justify-center font-bold gap-10">
-        {/* <div>ホームへ</div> */}
+        <ToHomePage />
         <div>サインイン</div>
         {/* <div>サインアウト</div> */}
       </div>
