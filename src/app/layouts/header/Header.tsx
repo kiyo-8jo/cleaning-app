@@ -1,3 +1,4 @@
+import DisplayCurrentPage from "@/app/components/header/DisplayCurrentPage";
 import Today from "@/app/components/header/Today";
 
 const Header = () => {
@@ -7,9 +8,7 @@ const Header = () => {
         <Today />
       </div>
       <div className="flex flex-1/3 justify-center font-bold text-xl gap-5 ">
-        <div>フロント用画面</div>
-        {/* <div>ハウス用画面</div>
-        <div>作成用画面</div> */}
+        <DisplayCurrentPage />
       </div>
       <div className="flex flex-1/3 justify-center font-bold gap-10">
         {/* <div>ホームへ</div> */}
