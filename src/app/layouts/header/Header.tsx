@@ -4,7 +4,7 @@ import ToHomePage from "@/app/components/header/ToHomePage";
 
 const Header = () => {
   return (
-    <div className="h-15 bg-red-100 flex items-center">
+    <div className="h-[5vh] bg-red-100 flex items-center">
       <div className="flex flex-1/3 justify-center font-bold">
         <Today />
       </div>
