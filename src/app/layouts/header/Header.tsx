@@ -1,4 +1,5 @@
 import DisplayCurrentPage from "@/app/components/header/DisplayCurrentPage";
+import LogoutButton from "@/app/components/header/LogoutButton";
 import Today from "@/app/components/header/Today";
 import ToHomePage from "@/app/components/header/ToHomePage";
 
@@ -13,8 +14,7 @@ const Header = () => {
       </div>
       <div className="flex flex-1/3 justify-center font-bold gap-10">
         <ToHomePage />
-        <div>サインイン</div>
-        {/* <div>サインアウト</div> */}
+        <LogoutButton />
       </div>
     </div>
   );

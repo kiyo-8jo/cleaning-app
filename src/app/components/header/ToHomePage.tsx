@@ -5,8 +5,7 @@ import { usePathname } from "next/navigation";
 
 const ToHomePage = () => {
   const path = usePathname();
-  console.log(path);
-
+  
   return <div>{path === "/" ? "" : <Link href="/">ホーム画面へ</Link>}</div>;
 };
 
