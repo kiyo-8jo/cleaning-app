@@ -1,4 +1,6 @@
 import { RoomType } from "@/app/types/types";
+import { TbCircleKeyFilled } from "react-icons/tb";
+import { TbCircleCheckFilled } from "react-icons/tb";
 
 interface RoomCardType {
   room: RoomType;
@@ -29,9 +31,13 @@ const RoomCard = ({ room }: RoomCardType) => {
         </div>
         <div>{room.cleaningType}</div>
       </div>
-      <div className="flex items-center justify-around h-[25%] w-full border-t-1 border-b-1 border-gray-500">
-        <div>{room.isKeyBack.toString()}</div>
-        <div>{room.isCleaningComplete.toString()}</div>
+      <div className="flex items-center justify-center h-[25%] w-full border-t-1 border-b-1 border-gray-500 gap-3">
+        <div className="text-2xl text-yellow-800">
+          {room.isKeyBack && <TbCircleKeyFilled />}
+        </div>
+        <div className="text-2xl text-blue-800">
+          {room.isCleaningComplete && <TbCircleCheckFilled />}
+        </div>
       </div>
       <div className="flex h-[60%] w-full mt-1 text-sm">
         <div className="flex flex-col w-1/2 gap-1">
