@@ -6,7 +6,7 @@ const LoginPage = () => {
       <form className="bg-gray-300 flex flex-col items-center justify-center w-[300px] h-[200px] gap-10 rounded-2xl">
         <p className="text-lg">Googleアカウントでログインする</p>
         <button
-          className="bg-blue-600 px-5 py-2 rounded-3xl text-white text-lg"
+          className="bg-blue-600 px-5 py-2 rounded-3xl text-white text-lg cursor-pointer"
           formAction={signInWithGoogle}
         >
           Log In
