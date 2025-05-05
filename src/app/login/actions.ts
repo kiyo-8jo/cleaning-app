@@ -5,11 +5,12 @@ import { createClient } from "../../../utils/supabase/server";
 
 export async function signInWithGoogle() {
   const supabase = await createClient();
+  const url = process.env.NEXT_PUBLIC_URL;
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: "http://localhost:3000/api/auth/callback",
+      redirectTo: `${url}/api/auth/callback`,
     },
   });
 
