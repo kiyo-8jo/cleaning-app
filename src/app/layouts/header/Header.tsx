@@ -1,7 +1,7 @@
 import DisplayCurrentPage from "@/app/components/header/DisplayCurrentPage";
 import LogoutButton from "@/app/components/header/LogoutButton";
 import Today from "@/app/components/header/Today";
-import ToHomePage from "@/app/components/header/ToHomePage";
+import ToHomePageButton from "@/app/components/header/ToHomePageButton";
 
 const Header = () => {
   return (
@@ -13,7 +13,7 @@ const Header = () => {
         <DisplayCurrentPage />
       </div>
       <div className="flex flex-1/3 justify-center font-bold gap-10">
-        <ToHomePage />
+        <ToHomePageButton />
         <LogoutButton />
       </div>
     </div>
