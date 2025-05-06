@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Rooms1f {
+  id                 Int     @unique
+  roomType           String
+  cleaningType       String
+  stayCleaningType   String
+  isKeyBack          Boolean
+  isCleaningComplete Boolean
+  isWaitingCheck     Boolean
+  nowBeds            Int
+  newBeds            Int
+  adult              Int
+  inf                Int
+  kidInf             Int
+  memo               String?
+}
+
+model Rooms2f {
+  id                 Int     @unique
+  roomType           String
+  cleaningType       String
+  stayCleaningType   String
+  isKeyBack          Boolean
+  isCleaningComplete Boolean
+  isWaitingCheck     Boolean
+  nowBeds            Int
+  newBeds            Int
+  adult              Int
+  inf                Int
+  kidInf             Int
+  memo               String?
+}
