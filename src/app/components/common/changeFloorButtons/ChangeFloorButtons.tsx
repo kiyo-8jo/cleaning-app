@@ -3,6 +3,7 @@
 import { setIs1fFalse, setIs1fTrue } from "@/app/lib/features/is1f/is1fSlice";
 import { getRooms1f } from "@/app/lib/features/rooms1f/rooms1fSlice";
 import { getRooms2f } from "@/app/lib/features/rooms2f/rooms2fSlice";
+import { setTargetRoom } from "@/app/lib/features/targetRoom/targetRoomSlice";
 import { useAppDispatch, useAppSelector } from "@/app/lib/hooks/hooks";
 import { useEffect } from "react";
 
@@ -22,6 +23,7 @@ const ChangeFloorButtons = () => {
         onClick={() => {
           dispatch(setIs1fTrue());
           dispatch(getRooms1f());
+          dispatch(setTargetRoom({}));
         }}
         className={`${
           is1f && "border-2 pointer-events-none"
@@ -33,6 +35,7 @@ const ChangeFloorButtons = () => {
         onClick={() => {
           dispatch(setIs1fFalse());
           dispatch(getRooms2f());
+          dispatch(setTargetRoom({}));
         }}
         className={`${
           !is1f && "border-2 pointer-events-none"
