@@ -3,6 +3,15 @@
 import { setTargetRoom } from "@/app/lib/features/targetRoom/targetRoomSlice";
 import { useAppSelector } from "@/app/lib/hooks/hooks";
 import { useDispatch } from "react-redux";
+import {
+  bedsOptions,
+  cleaningTypeOptions,
+  createObjOptions,
+  createOptions,
+  guestOptions,
+  objOptions,
+  stayCleaningTypeOptions,
+} from "./options";
 
 const SideBar = () => {
   const dispatch = useDispatch();
@@ -28,16 +37,12 @@ const SideBar = () => {
               key={targetRoom.cleaningType}
               className="w-1/2 bg-white rounded-md p-1 text-sm"
             >
-              <option value="OUT">OUT</option>
-              <option value="IN">IN</option>
-              <option value="OUT-IN">OUT-IN</option>
-              <option value="STAY">STAY</option>
-              <option value="NONE">NONE</option>
+              {createOptions(cleaningTypeOptions)}
             </select>
           </div>
           {/* 連泊清掃方法 */}
           <div className="w-full flex items-center mb-3">
-            <label htmlFor="cleaning_type" className="w-1/2 text-s">
+            <label htmlFor="stay_cleaning_type" className="w-1/2 text-s">
               連泊清掃方法
             </label>
             <select
@@ -47,9 +52,7 @@ const SideBar = () => {
               key={targetRoom.stayCleaningType}
               className="w-1/2 bg-white rounded-md p-1 text-sm"
             >
-              <option value="NORMAL">NORMAL</option>
-              <option value="ECO">ECO</option>
-              <option value="NOT-SELECTt">NOT-SELECT</option>
+              {createOptions(stayCleaningTypeOptions)}
             </select>
           </div>
           {/* 鍵の返却 */}
@@ -64,8 +67,7 @@ const SideBar = () => {
               key={Number(targetRoom.isKeyBack)}
               className="w-1/2 bg-white rounded-md p-1 text-sm"
             >
-              <option value="0">FALSE</option>
-              <option value="1">TRUE</option>
+              {createObjOptions(objOptions)}
             </select>
           </div>
           {/* 現在のベッド数 */}
@@ -80,10 +82,7 @@ const SideBar = () => {
               key={targetRoom.nowBeds}
               className="w-1/2 bg-white rounded-md p-1 text-sm"
             >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
+              {createOptions(bedsOptions)}
             </select>
           </div>
           {/* 変更後のベッド数 */}
@@ -98,10 +97,7 @@ const SideBar = () => {
               key={targetRoom.newBeds}
               className="w-1/2 bg-white rounded-md p-1 text-sm"
             >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
+              {createOptions(bedsOptions)}
             </select>
           </div>
           {/* 大人の人数 */}
@@ -116,12 +112,7 @@ const SideBar = () => {
               key={targetRoom.adult}
               className="w-1/2 bg-white rounded-md p-1 text-sm"
             >
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
+              {createOptions(guestOptions)}
             </select>
           </div>
           {/* 添い寝の人数 */}
@@ -136,12 +127,7 @@ const SideBar = () => {
               key={targetRoom.inf}
               className="w-1/2 bg-white rounded-md p-1 text-sm"
             >
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
+              {createOptions(guestOptions)}
             </select>
           </div>
           {/* 子供添寝の人数 */}
@@ -156,12 +142,7 @@ const SideBar = () => {
               key={targetRoom.kidInf}
               className="w-1/2 bg-white rounded-md p-1 text-sm"
             >
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
+              {createOptions(guestOptions)}
             </select>
           </div>
           {/* 清掃完了 */}
@@ -176,8 +157,7 @@ const SideBar = () => {
               key={Number(targetRoom.isCleaningComplete)}
               className="w-1/2 bg-white rounded-md p-1 text-sm"
             >
-              <option value="0">FALSE</option>
-              <option value="1">TRUE</option>
+              {createObjOptions(objOptions)}
             </select>
           </div>
           {/* メモ */}
@@ -189,6 +169,7 @@ const SideBar = () => {
               name="memo"
               id="memo"
               defaultValue={targetRoom.memo}
+              key={targetRoom.memo}
               className="w-1/2 bg-white font-sm resize-none h-[100px] rounded-md p-1"
             ></textarea>
           </div>
