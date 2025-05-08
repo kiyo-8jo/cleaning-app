@@ -12,11 +12,11 @@ const connectDB = async () => {
   }
 };
 
-// 1階の部屋取得API
+// 2階の部屋取得API
 export const GET = async () => {
   try {
     await connectDB();
-    const rooms_2f = await prisma.rooms1f.findMany({
+    const rooms_2f = await prisma.rooms2f.findMany({
       orderBy: {
         id: "asc",
       },
