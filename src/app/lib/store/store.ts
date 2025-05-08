@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import is1fReducer from "../features/is1f/is1fSlice";
 import rooms1fReducer from "../features/rooms1f/rooms1fSlice";
 import rooms2fReducer from "../features/rooms2f/rooms2fSlice";
+import targetRoomReducer from '../features/targetRoom/targetRoomSlice';
 
 export const makeStore = () => {
   return configureStore({
@@ -9,6 +10,7 @@ export const makeStore = () => {
       is1f: is1fReducer,
       rooms1f: rooms1fReducer,
       rooms2f: rooms2fReducer,
+      targetRoom: targetRoomReducer,
     },
   });
 };

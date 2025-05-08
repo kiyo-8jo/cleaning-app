@@ -1,12 +1,22 @@
+"use client";
+
+import { setTargetRoom } from "@/app/lib/features/targetRoom/targetRoomSlice";
+import { useAppSelector } from "@/app/lib/hooks/hooks";
 import { RoomType } from "@/app/types/types";
 import { TbCircleKeyFilled } from "react-icons/tb";
 import { TbCircleCheckFilled } from "react-icons/tb";
+import { useDispatch } from "react-redux";
 
 interface RoomCardType {
   room: RoomType;
 }
 
 const RoomCard = ({ room }: RoomCardType) => {
+  const dispatch = useDispatch();
+  const { is1f } = useAppSelector((state) => state.is1f);
+  const { rooms1f } = useAppSelector((state) => state.rooms1f);
+  const { rooms2f } = useAppSelector((state) => state.rooms2f);
+
   // カードの背景色を取得
   const getBgColor = (cleaningType: string, stayCleaningType: string) => {
     if (cleaningType === "IN") return "bg-blue-200";
@@ -18,8 +28,10 @@ const RoomCard = ({ room }: RoomCardType) => {
     if (cleaningType === "STAY" && stayCleaningType === "ECO")
       return "bg-green-200";
   };
+
   return (
     <div
+      onClick={() => dispatch(setTargetRoom({ room, is1f, rooms1f, rooms2f }))}
       className={`${getBgColor(
         room.cleaningType,
         room.stayCleaningType
