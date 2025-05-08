@@ -10,11 +10,13 @@ const SideBar = () => {
 
   return (
     <div>
+      {/* タイトル */}
       <h2 className="my-5 text-center font-bold text-2xl">
         {targetRoom.id}の編集
       </h2>
       <form>
         <div className="w-full flex flex-col">
+          {/* 清掃方法 */}
           <div className="w-full flex items-center mb-3">
             <label htmlFor="cleaning_type" className="w-1/2">
               清掃方法
@@ -22,7 +24,8 @@ const SideBar = () => {
             <select
               name="cleaning_type"
               id="cleaning_type"
-              defaultValue='OUT'
+              defaultValue={targetRoom.cleaningType}
+              key={targetRoom.cleaningType}
               className="w-1/2 bg-white rounded-md p-1 text-sm"
             >
               <option value="OUT">OUT</option>
@@ -32,6 +35,7 @@ const SideBar = () => {
               <option value="NONE">NONE</option>
             </select>
           </div>
+          {/* 連泊清掃方法 */}
           <div className="w-full flex items-center mb-3">
             <label htmlFor="cleaning_type" className="w-1/2 text-s">
               連泊清掃方法
@@ -39,14 +43,16 @@ const SideBar = () => {
             <select
               name="stay_cleaning_type"
               id="stay_cleaning_type"
-              defaultValue="not_select"
+              defaultValue={targetRoom.stayCleaningType}
+              key={targetRoom.stayCleaningType}
               className="w-1/2 bg-white rounded-md p-1 text-sm"
             >
-              <option value="normal">NORMAL</option>
-              <option value="eco">ECO</option>
-              <option value="not_select">NOT-SELECT</option>
+              <option value="NORMAL">NORMAL</option>
+              <option value="ECO">ECO</option>
+              <option value="NOT-SELECTt">NOT-SELECT</option>
             </select>
           </div>
+          {/* 鍵の返却 */}
           <div className="w-full flex items-center mb-3">
             <label htmlFor="is_key_back" className="w-1/2">
               鍵の返却
@@ -54,13 +60,15 @@ const SideBar = () => {
             <select
               name="is_key_back"
               id="is_key_back"
-              defaultValue="0"
+              defaultValue={Number(targetRoom.isKeyBack)}
+              key={Number(targetRoom.isKeyBack)}
               className="w-1/2 bg-white rounded-md p-1 text-sm"
             >
               <option value="0">FALSE</option>
               <option value="1">TRUE</option>
             </select>
           </div>
+          {/* 現在のベッド数 */}
           <div className="w-full flex items-center mb-3">
             <label htmlFor="now_beds" className="w-1/2">
               現在のベッド数
@@ -68,7 +76,8 @@ const SideBar = () => {
             <select
               name="now_beds"
               id="now_beds"
-              defaultValue="2"
+              defaultValue={targetRoom.nowBeds}
+              key={targetRoom.nowBeds}
               className="w-1/2 bg-white rounded-md p-1 text-sm"
             >
               <option value="1">1</option>
@@ -77,6 +86,7 @@ const SideBar = () => {
               <option value="4">4</option>
             </select>
           </div>
+          {/* 変更後のベッド数 */}
           <div className="w-full flex items-center mb-3">
             <label htmlFor="new_beds" className="w-1/2">
               変更後のベッド数
@@ -84,7 +94,8 @@ const SideBar = () => {
             <select
               name="new_beds"
               id="new_beds"
-              defaultValue="2"
+              defaultValue={targetRoom.newBeds}
+              key={targetRoom.newBeds}
               className="w-1/2 bg-white rounded-md p-1 text-sm"
             >
               <option value="1">1</option>
@@ -93,6 +104,7 @@ const SideBar = () => {
               <option value="4">4</option>
             </select>
           </div>
+          {/* 大人の人数 */}
           <div className="w-full flex items-center mb-3">
             <label htmlFor="adult" className="w-1/2">
               大人
@@ -100,7 +112,8 @@ const SideBar = () => {
             <select
               name="adult"
               id="adult"
-              defaultValue="2"
+              defaultValue={targetRoom.adult}
+              key={targetRoom.adult}
               className="w-1/2 bg-white rounded-md p-1 text-sm"
             >
               <option value="0">0</option>
@@ -111,6 +124,7 @@ const SideBar = () => {
               <option value="5">5</option>
             </select>
           </div>
+          {/* 添い寝の人数 */}
           <div className="w-full flex items-center mb-3">
             <label htmlFor="inf" className="w-1/2">
               添寝
@@ -118,7 +132,8 @@ const SideBar = () => {
             <select
               name="inf"
               id="inf"
-              defaultValue="0"
+              defaultValue={targetRoom.inf}
+              key={targetRoom.inf}
               className="w-1/2 bg-white rounded-md p-1 text-sm"
             >
               <option value="0">0</option>
@@ -129,6 +144,7 @@ const SideBar = () => {
               <option value="5">5</option>
             </select>
           </div>
+          {/* 子供添寝の人数 */}
           <div className="w-full flex items-center mb-3">
             <label htmlFor="kid_inf" className="w-1/2">
               子供添寝
@@ -136,7 +152,8 @@ const SideBar = () => {
             <select
               name="kid_inf"
               id="kid_inf"
-              defaultValue="0"
+              defaultValue={targetRoom.kidInf}
+              key={targetRoom.kidInf}
               className="w-1/2 bg-white rounded-md p-1 text-sm"
             >
               <option value="0">0</option>
@@ -147,6 +164,7 @@ const SideBar = () => {
               <option value="5">5</option>
             </select>
           </div>
+          {/* 清掃完了 */}
           <div className="w-full flex items-center mb-3">
             <label htmlFor="is_cleaning_complete" className="w-1/2">
               清掃完了
@@ -154,13 +172,15 @@ const SideBar = () => {
             <select
               name="is_cleaning_complete"
               id="is_cleaning_complete"
-              defaultValue="0"
+              defaultValue={Number(targetRoom.isCleaningComplete)}
+              key={Number(targetRoom.isCleaningComplete)}
               className="w-1/2 bg-white rounded-md p-1 text-sm"
             >
               <option value="0">FALSE</option>
               <option value="1">TRUE</option>
             </select>
           </div>
+          {/* メモ */}
           <div className="w-full flex items-center mb-3">
             <label htmlFor="memo" className="flex w-1/2 items-center">
               メモ
@@ -168,7 +188,7 @@ const SideBar = () => {
             <textarea
               name="memo"
               id="memo"
-              defaultValue=""
+              defaultValue={targetRoom.memo}
               className="w-1/2 bg-white font-sm resize-none h-[100px] rounded-md p-1"
             ></textarea>
           </div>
