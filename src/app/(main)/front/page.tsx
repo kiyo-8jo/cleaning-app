@@ -9,7 +9,9 @@ import { useEffect } from "react";
 const FrontPage = () => {
   const dispatch = useAppDispatch();
   const { is1f } = useAppSelector((state) => state.is1f);
-  const { rooms1f, getRooms1fStatus } = useAppSelector((state) => state.rooms1f);
+  const { rooms1f, getRooms1fStatus } = useAppSelector(
+    (state) => state.rooms1f
+  );
   const { rooms2f, getRooms2fStatus } = useAppSelector(
     (state) => state.rooms2f
   );
@@ -31,7 +33,7 @@ const FrontPage = () => {
         floorRooms.map((room) => <RoomCard room={room} key={room.id} />)}
       {/* ロード中 */}
       {getRooms1fStatus === "pending" ||
-        (getRooms2fStatus === "pending" && <div>ロード中</div>)}
+        (getRooms2fStatus === "pending" && <div>データ取得中...</div>)}
       {/* データ取得失敗 */}
       {getRooms1fStatus === "failed" ||
         (getRooms2fStatus === "failed" && <div>エラーが発生しました;</div>)}
