@@ -1,7 +1,18 @@
+"use client";
+
+import { setTargetRoom } from "@/app/lib/features/targetRoom/targetRoomSlice";
+import { useAppSelector } from "@/app/lib/hooks/hooks";
+import { useDispatch } from "react-redux";
+
 const SideBar = () => {
+  const dispatch = useDispatch();
+  const { targetRoom } = useAppSelector((state) => state.targetRoom);
+
   return (
-    <div className="bg-gray-300 w-[450px] h-full mr-5 p-3 rounded-2xl min-w-[300px] sticky top-9">
-      <h2 className="my-5 text-center font-bold text-2xl">[部屋番号]の編集</h2>
+    <div>
+      <h2 className="my-5 text-center font-bold text-2xl">
+        {targetRoom.id}の編集
+      </h2>
       <form>
         <div className="w-full flex flex-col">
           <div className="w-full flex items-center mb-3">
@@ -11,14 +22,14 @@ const SideBar = () => {
             <select
               name="cleaning_type"
               id="cleaning_type"
-              defaultValue="out"
+              defaultValue='OUT'
               className="w-1/2 bg-white rounded-md p-1 text-sm"
             >
-              <option value="out">OUT</option>
-              <option value="in">IN</option>
-              <option value="out-in">OUT-IN</option>
-              <option value="stay">STAY</option>
-              <option value="none">NONE</option>
+              <option value="OUT">OUT</option>
+              <option value="IN">IN</option>
+              <option value="OUT-IN">OUT-IN</option>
+              <option value="STAY">STAY</option>
+              <option value="NONE">NONE</option>
             </select>
           </div>
           <div className="w-full flex items-center mb-3">
@@ -163,10 +174,16 @@ const SideBar = () => {
           </div>
         </div>
         <div className="flex my-5 items-center justify-center gap-15">
-          <div className="bg-yellow-100 w-[100px] py-1 rounded-2xl text-center font-semibold cursor-pointer">
+          <div
+            onClick={() => dispatch(setTargetRoom({}))}
+            className="bg-yellow-100 w-[100px] py-1 rounded-2xl text-center font-semibold cursor-pointer"
+          >
             変更する
           </div>
-          <div className="bg-yellow-100 w-[100px] py-1 rounded-2xl text-center font-semibold cursor-pointer">
+          <div
+            onClick={() => dispatch(setTargetRoom({}))}
+            className="bg-yellow-100 w-[100px] py-1 rounded-2xl text-center font-semibold cursor-pointer"
+          >
             キャンセル
           </div>
         </div>
