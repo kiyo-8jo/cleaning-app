@@ -23,8 +23,9 @@ const FrontPage = () => {
         getRooms2fStatus === "succeeded" &&
         floorRooms.map((room) => <RoomCard room={room} key={room.id} />)}
       {/* ロード中 */}
-      {(getRooms1fStatus === "pending" ||
-        getRooms2fStatus === "pending") && <Fetching/>}
+      {(getRooms1fStatus === "pending" || getRooms2fStatus === "pending") && (
+        <Fetching />
+      )}
       {/* データ取得失敗 */}
       {getRooms1fStatus === "failed" ||
         (getRooms2fStatus === "failed" && <div>エラーが発生しました;</div>)}
