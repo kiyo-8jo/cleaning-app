@@ -1,7 +1,7 @@
 "use client";
 
 import Fetching from "@/app/components/common/fetching/Fetching";
-import RoomCard from "@/app/components/common/roomCard/RoomCard";
+import HouseRoomCard from "@/app/components/house/roomCard/HouseRoomCard";
 import { useAppSelector } from "@/app/lib/hooks/hooks";
 
 const HousePage = () => {
@@ -21,7 +21,7 @@ const HousePage = () => {
       {/* データ取得成功 */}
       {getRooms1fStatus === "succeeded" &&
         getRooms2fStatus === "succeeded" &&
-        floorRooms.map((room) => <RoomCard room={room} key={room.id} />)}
+        floorRooms.map((room) => <HouseRoomCard room={room} key={room.id} />)}
       {/* ロード中 */}
       {(getRooms1fStatus === "pending" || getRooms2fStatus === "pending") && (
         <Fetching />

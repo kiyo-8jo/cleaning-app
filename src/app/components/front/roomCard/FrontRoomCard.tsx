@@ -11,7 +11,7 @@ interface RoomCardType {
   room: RoomType;
 }
 
-const RoomCard = ({ room }: RoomCardType) => {
+const FrontRoomCard = ({ room }: RoomCardType) => {
   const dispatch = useDispatch();
   const { is1f } = useAppSelector((state) => state.is1f);
   const { rooms1f } = useAppSelector((state) => state.rooms1f);
@@ -77,4 +77,4 @@ const RoomCard = ({ room }: RoomCardType) => {
   );
 };
 
-export default RoomCard;
+export default FrontRoomCard;
