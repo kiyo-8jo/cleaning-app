@@ -1,6 +1,7 @@
 "use client";
 
 import Fetching from "@/app/components/common/fetching/Fetching";
+import Modal from "@/app/components/house/modal/Modal";
 import HouseRoomCard from "@/app/components/house/roomCard/HouseRoomCard";
 import { useAppSelector } from "@/app/lib/hooks/hooks";
 
@@ -13,6 +14,8 @@ const HousePage = () => {
     (state) => state.rooms2f
   );
 
+  const { isModalOpen } = useAppSelector((state) => state.isModalOpen);
+
   // is1Fの値によって表示する階を変更
   const floorRooms = is1f ? rooms1f : rooms2f;
 
@@ -22,6 +25,7 @@ const HousePage = () => {
       {getRooms1fStatus === "succeeded" &&
         getRooms2fStatus === "succeeded" &&
         floorRooms.map((room) => <HouseRoomCard room={room} key={room.id} />)}
+      {isModalOpen && <Modal />}
       {/* ロード中 */}
       {(getRooms1fStatus === "pending" || getRooms2fStatus === "pending") && (
         <Fetching />

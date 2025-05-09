@@ -1,5 +1,6 @@
 "use client";
 
+import { setIsModalOpen } from "@/app/lib/features/modal/modalSlice";
 import { setTargetRoom } from "@/app/lib/features/targetRoom/targetRoomSlice";
 import { useAppSelector } from "@/app/lib/hooks/hooks";
 import { RoomType } from "@/app/types/types";
@@ -29,9 +30,14 @@ const HouseRoomCard = ({ room }: RoomCardType) => {
       return "bg-green-200";
   };
 
+  const handleClick = () => {
+    dispatch(setTargetRoom({ room, is1f, rooms1f, rooms2f }));
+    dispatch(setIsModalOpen());
+  };
+
   return (
     <div
-      onClick={() => dispatch(setTargetRoom({ room, is1f, rooms1f, rooms2f }))}
+      onClick={handleClick}
       className={`${getBgColor(
         room.cleaningType,
         room.stayCleaningType
