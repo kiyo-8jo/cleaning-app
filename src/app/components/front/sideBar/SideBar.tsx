@@ -14,15 +14,21 @@ import {
 } from "./options";
 import { FormEventHandler } from "react";
 import { RoomType } from "@/app/types/types";
-import { editRoom1f } from "@/app/lib/features/rooms1f/rooms1fSlice";
-import { editRoom2f } from "@/app/lib/features/rooms2f/rooms2fSlice";
+import {
+  editRoom1f,
+  getRooms1f,
+} from "@/app/lib/features/rooms1f/rooms1fSlice";
+import {
+  editRoom2f,
+  getRooms2f,
+} from "@/app/lib/features/rooms2f/rooms2fSlice";
 
 const SideBar = () => {
   const dispatch = useAppDispatch();
   const { targetRoom } = useAppSelector((state) => state.targetRoom);
   const { is1f } = useAppSelector((state) => state.is1f);
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     // フォームから値を取得し、新しい部屋データを作成
     const form = new FormData(e.currentTarget);
@@ -42,10 +48,16 @@ const SideBar = () => {
       memo: form.get("memo") as string,
       isWaitingCheck: false,
     };
+    // 現在指定している階に応じて正しい変更用関数を使用する
     const setEditFunction = is1f ? editRoom1f : editRoom2f;
-    dispatch(setEditFunction({ newRoomDate }));
+    // 現在指定している階に応じて正しい取得用関数を使用する
+    const getFunction = is1f ? getRooms1f : getRooms2f;
+    // targetRoomのリセット
     dispatch(setTargetRoom({}));
-    window.location.reload();
+    // 指定している階のDBのデータを変更
+    await dispatch(setEditFunction({ newRoomDate }));
+    // 指定している階のデータを取得
+    await dispatch(getFunction());
   };
 
   return (
