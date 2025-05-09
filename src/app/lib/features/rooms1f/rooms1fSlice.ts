@@ -6,9 +6,51 @@ export const getRooms1f = createAsyncThunk(
   "rooms1f/fetchByIdStatus",
   async () => {
     const url = process.env.NEXT_PUBLIC_URL;
-    const res = await fetch(`${url}/api/getRooms/1f`, { cache: "no-store" });
+    const res = await fetch(`${url}/api/room/1f`, { cache: "no-store" });
     const data = await res.json();
     return data.rooms_1f;
+  }
+);
+
+// データ変更用関数
+export const editRoom1f = createAsyncThunk(
+  "rooms1f/editRoom1f",
+  async (payload: { newRoomDate: RoomType }) => {
+    const { newRoomDate } = payload;
+    const {
+      cleaningType,
+      stayCleaningType,
+      isKeyBack,
+      isCleaningComplete,
+      isWaitingCheck,
+      nowBeds,
+      newBeds,
+      adult,
+      inf,
+      kidInf,
+      memo,
+    } = newRoomDate;
+    const url = process.env.NEXT_PUBLIC_URL;
+    const res = await fetch(`${url}/api/room/1f/${newRoomDate.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        cleaningType,
+        stayCleaningType,
+        isKeyBack,
+        isCleaningComplete,
+        isWaitingCheck,
+        nowBeds,
+        newBeds,
+        adult,
+        inf,
+        kidInf,
+        memo,
+      }),
+    });
+    return await res.json();
   }
 );
 

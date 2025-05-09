@@ -31,6 +31,11 @@ const createObjOptions = (
   ));
 };
 
+const getBoolean = (data: FormDataEntryValue) => {
+  if (data === "0") return false;
+  return true;
+};
+
 export {
   cleaningTypeOptions,
   stayCleaningTypeOptions,
@@ -39,4 +44,5 @@ export {
   objOptions,
   createObjOptions,
   createOptions,
+  getBoolean,
 };
