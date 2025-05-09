@@ -48,6 +48,23 @@ const SideBar = () => {
       memo: form.get("memo") as string,
       isWaitingCheck: false,
     };
+
+    // バリデーション
+    if (
+      newRoomDate.cleaningType === "STAY" &&
+      newRoomDate.stayCleaningType === "NOT-SELECT"
+    ) {
+      alert("連泊清掃方法が選択されていません");
+      return;
+    }
+    if (
+      newRoomDate.cleaningType !== "STAY" &&
+      newRoomDate.stayCleaningType !== "NOT-SELECT"
+    ) {
+      alert("連泊でないのに連泊清掃方法が選択されています");
+      return;
+    }
+
     // 現在指定している階に応じて正しい変更用関数を使用する
     const setEditFunction = is1f ? editRoom1f : editRoom2f;
     // 現在指定している階に応じて正しい取得用関数を使用する
