@@ -69,10 +69,10 @@ const SideBar = () => {
     const setEditFunction = is1f ? editRoom1f : editRoom2f;
     // 現在指定している階に応じて正しい取得用関数を使用する
     const getFunction = is1f ? getRooms1f : getRooms2f;
-    // targetRoomのリセット
-    dispatch(setTargetRoom({}));
     // 指定している階のDBのデータを変更
     await dispatch(setEditFunction({ newRoomDate }));
+    // targetRoomのリセット
+    dispatch(setTargetRoom({}));
     // 指定している階のデータを取得
     await dispatch(getFunction());
   };
