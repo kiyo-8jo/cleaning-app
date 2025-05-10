@@ -106,12 +106,12 @@ const Modal = () => {
           </div>
         </div>
         <div className="flex items-center gap-8">
-          <button className="cursor-pointer bg-blue-600 text-white p-2 rounded-2xl">
+          <button className="cursor-pointer bg-blue-600 text-white p-2 rounded-2xl w-[100px]">
             変更する
           </button>
           <div
             onClick={() => dispatch(setIsModalClose())}
-            className="cursor-pointer bg-blue-600 text-white p-2 rounded-2xl"
+            className="cursor-pointer bg-blue-600 text-white p-2 rounded-2xl w-[100px]"
           >
             キャンセル
           </div>
