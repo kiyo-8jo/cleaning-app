@@ -25,6 +25,7 @@ const HousePage = () => {
       {getRooms1fStatus === "succeeded" &&
         getRooms2fStatus === "succeeded" &&
         floorRooms.map((room) => <HouseRoomCard room={room} key={room.id} />)}
+        {/* モーダル表示 */}
       {isModalOpen && <Modal />}
       {/* ロード中 */}
       {(getRooms1fStatus === "pending" || getRooms2fStatus === "pending") && (
