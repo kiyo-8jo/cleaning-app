@@ -27,11 +27,19 @@ const Modal = () => {
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
+
+    // バリデーション
+    if (!isWaitingCheck && isCleaningComplete) {
+      alert("チェック待ちになっていません");
+      return;
+    }
+
     const newRoomDate = {
       ...(targetRoom as RoomType),
       isWaitingCheck,
       isCleaningComplete,
     };
+
     // 現在指定している階に応じて正しい変更用関数を使用する
     const setEditFunction = is1f ? editRoom1f : editRoom2f;
     // 現在指定している階に応じて正しい取得用関数を使用する
