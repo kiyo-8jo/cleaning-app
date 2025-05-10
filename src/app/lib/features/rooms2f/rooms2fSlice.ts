@@ -6,11 +6,54 @@ export const getRooms2f = createAsyncThunk(
   "rooms2f/fetchByIdStatus",
   async () => {
     const url = process.env.NEXT_PUBLIC_URL;
-    const res = await fetch(`${url}/api/getRooms/2f`, { cache: "no-store" });
+    const res = await fetch(`${url}/api/room/2f`, { cache: "no-store" });
     const data = await res.json();
     return data.rooms_2f;
   }
 );
+
+// データ変更用関数
+export const editRoom2f = createAsyncThunk(
+  "rooms2f/editRoom2f",
+  async (payload: { newRoomDate: RoomType }) => {
+    const { newRoomDate } = payload;
+    const {
+      cleaningType,
+      stayCleaningType,
+      isKeyBack,
+      isCleaningComplete,
+      isWaitingCheck,
+      nowBeds,
+      newBeds,
+      adult,
+      inf,
+      kidInf,
+      memo,
+    } = newRoomDate;
+    const url = process.env.NEXT_PUBLIC_URL;
+    const res = await fetch(`${url}/api/room/2f/${newRoomDate.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        cleaningType,
+        stayCleaningType,
+        isKeyBack,
+        isCleaningComplete,
+        isWaitingCheck,
+        nowBeds,
+        newBeds,
+        adult,
+        inf,
+        kidInf,
+        memo,
+      }),
+    });
+    return await res.json();
+  }
+);
+
 
 interface Rooms2fState {
   rooms2f: [] | RoomType[];

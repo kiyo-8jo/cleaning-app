@@ -1,17 +1,19 @@
 "use client";
 
+import { setIsModalOpen } from "@/app/lib/features/modal/modalSlice";
 import { setTargetRoom } from "@/app/lib/features/targetRoom/targetRoomSlice";
 import { useAppSelector } from "@/app/lib/hooks/hooks";
 import { RoomType } from "@/app/types/types";
 import { TbCircleKeyFilled } from "react-icons/tb";
 import { TbCircleCheckFilled } from "react-icons/tb";
+import { RiStopCircleFill } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 
 interface RoomCardType {
   room: RoomType;
 }
 
-const RoomCard = ({ room }: RoomCardType) => {
+const HouseRoomCard = ({ room }: RoomCardType) => {
   const dispatch = useDispatch();
   const { is1f } = useAppSelector((state) => state.is1f);
   const { rooms1f } = useAppSelector((state) => state.rooms1f);
@@ -29,9 +31,14 @@ const RoomCard = ({ room }: RoomCardType) => {
       return "bg-green-200";
   };
 
+  const handleClick = () => {
+    dispatch(setTargetRoom({ room, is1f, rooms1f, rooms2f }));
+    dispatch(setIsModalOpen());
+  };
+
   return (
     <div
-      onClick={() => dispatch(setTargetRoom({ room, is1f, rooms1f, rooms2f }))}
+      onClick={handleClick}
       className={`${getBgColor(
         room.cleaningType,
         room.stayCleaningType
@@ -44,12 +51,21 @@ const RoomCard = ({ room }: RoomCardType) => {
         <div>{room.cleaningType}</div>
       </div>
       <div className="flex items-center justify-center h-[25%] w-full border-t-1 border-b-1 border-gray-500 gap-3">
-        <div className="text-2xl text-yellow-800">
-          {room.isKeyBack && <TbCircleKeyFilled />}
-        </div>
-        <div className="text-2xl text-blue-800">
-          {room.isCleaningComplete && <TbCircleCheckFilled />}
-        </div>
+        {room.isKeyBack && (
+          <div className="text-2xl text-yellow-800">
+            <TbCircleKeyFilled />
+          </div>
+        )}
+        {room.isWaitingCheck && !room.isCleaningComplete && (
+          <div className="text-2xl text-gray-800">
+            <RiStopCircleFill />
+          </div>
+        )}
+        {room.isWaitingCheck && room.isCleaningComplete && (
+          <div className="text-2xl text-blue-800">
+            <TbCircleCheckFilled />
+          </div>
+        )}
       </div>
       <div className="flex h-[60%] w-full mt-1 text-sm">
         <div className="flex flex-col w-1/2 gap-1">
@@ -77,4 +93,4 @@ const RoomCard = ({ room }: RoomCardType) => {
   );
 };
 
-export default RoomCard;
+export default HouseRoomCard;

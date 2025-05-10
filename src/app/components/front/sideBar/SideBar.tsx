@@ -1,21 +1,81 @@
 "use client";
 
 import { setTargetRoom } from "@/app/lib/features/targetRoom/targetRoomSlice";
-import { useAppSelector } from "@/app/lib/hooks/hooks";
-import { useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/app/lib/hooks/hooks";
 import {
   bedsOptions,
   cleaningTypeOptions,
   createObjOptions,
   createOptions,
+  getBoolean,
   guestOptions,
   objOptions,
   stayCleaningTypeOptions,
 } from "./options";
+import { FormEventHandler } from "react";
+import { RoomType } from "@/app/types/types";
+import {
+  editRoom1f,
+  getRooms1f,
+} from "@/app/lib/features/rooms1f/rooms1fSlice";
+import {
+  editRoom2f,
+  getRooms2f,
+} from "@/app/lib/features/rooms2f/rooms2fSlice";
 
 const SideBar = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { targetRoom } = useAppSelector((state) => state.targetRoom);
+  const { is1f } = useAppSelector((state) => state.is1f);
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    // フォームから値を取得し、新しい部屋データを作成
+    const form = new FormData(e.currentTarget);
+
+    const newRoomDate: RoomType = {
+      id: targetRoom.id,
+      roomType: targetRoom.roomType,
+      cleaningType: String(form.get("cleaning_type")),
+      stayCleaningType: String(form.get("stay_cleaning_type")),
+      isKeyBack: getBoolean(form.get("is_key_back")!),
+      isCleaningComplete: getBoolean(form.get("is_cleaning_complete")!),
+      nowBeds: Number(form.get("now_beds")),
+      newBeds: Number(form.get("new_beds")),
+      adult: Number(form.get("adult")),
+      inf: Number(form.get("inf")),
+      kidInf: Number(form.get("kid_inf")),
+      memo: form.get("memo") as string,
+      isWaitingCheck: false,
+    };
+
+    // バリデーション
+    if (
+      newRoomDate.cleaningType === "STAY" &&
+      newRoomDate.stayCleaningType === "NOT-SELECT"
+    ) {
+      alert("連泊清掃方法が選択されていません");
+      return;
+    }
+    if (
+      newRoomDate.cleaningType !== "STAY" &&
+      newRoomDate.stayCleaningType !== "NOT-SELECT"
+    ) {
+      alert("連泊でないのに連泊清掃方法が選択されています");
+      return;
+    }
+
+    // 現在指定している階に応じて正しい変更用関数を使用する
+    const setEditFunction = is1f ? editRoom1f : editRoom2f;
+    // 現在指定している階に応じて正しい取得用関数を使用する
+    const getFunction = is1f ? getRooms1f : getRooms2f;
+    // 指定している階のDBのデータを変更
+    await dispatch(setEditFunction({ newRoomDate }));
+    // targetRoomのリセット
+    dispatch(setTargetRoom({}));
+    // 指定している階のデータを取得
+    await dispatch(getFunction());
+  };
 
   return (
     <div>
@@ -23,7 +83,7 @@ const SideBar = () => {
       <h2 className="my-5 text-center font-bold text-2xl">
         {targetRoom.id}の編集
       </h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="w-full flex flex-col">
           {/* 清掃方法 */}
           <div className="w-full flex items-center mb-3">
@@ -70,6 +130,22 @@ const SideBar = () => {
               {createObjOptions(objOptions)}
             </select>
           </div>
+          {/* 清掃完了 */}
+          <div className="w-full flex items-center mb-3">
+            <label htmlFor="is_cleaning_complete" className="w-1/2">
+              清掃完了
+            </label>
+            <select
+              name="is_cleaning_complete"
+              id="is_cleaning_complete"
+              defaultValue={Number(targetRoom.isCleaningComplete)}
+              key={Number(targetRoom.isCleaningComplete)}
+              className="w-1/2 bg-white rounded-md p-1 text-sm"
+            >
+              {createObjOptions(objOptions)}
+            </select>
+          </div>
+
           {/* 現在のベッド数 */}
           <div className="w-full flex items-center mb-3">
             <label htmlFor="now_beds" className="w-1/2">
@@ -145,21 +221,6 @@ const SideBar = () => {
               {createOptions(guestOptions)}
             </select>
           </div>
-          {/* 清掃完了 */}
-          <div className="w-full flex items-center mb-3">
-            <label htmlFor="is_cleaning_complete" className="w-1/2">
-              清掃完了
-            </label>
-            <select
-              name="is_cleaning_complete"
-              id="is_cleaning_complete"
-              defaultValue={Number(targetRoom.isCleaningComplete)}
-              key={Number(targetRoom.isCleaningComplete)}
-              className="w-1/2 bg-white rounded-md p-1 text-sm"
-            >
-              {createObjOptions(objOptions)}
-            </select>
-          </div>
           {/* メモ */}
           <div className="w-full flex items-center mb-3">
             <label htmlFor="memo" className="flex w-1/2 items-center">
@@ -175,12 +236,12 @@ const SideBar = () => {
           </div>
         </div>
         <div className="flex my-5 items-center justify-center gap-15">
-          <div
-            onClick={() => dispatch(setTargetRoom({}))}
+          <button
+            type="submit"
             className="bg-yellow-100 w-[100px] py-1 rounded-2xl text-center font-semibold cursor-pointer"
           >
             変更する
-          </div>
+          </button>
           <div
             onClick={() => dispatch(setTargetRoom({}))}
             className="bg-yellow-100 w-[100px] py-1 rounded-2xl text-center font-semibold cursor-pointer"
