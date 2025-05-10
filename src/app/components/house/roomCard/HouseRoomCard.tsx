@@ -6,6 +6,7 @@ import { useAppSelector } from "@/app/lib/hooks/hooks";
 import { RoomType } from "@/app/types/types";
 import { TbCircleKeyFilled } from "react-icons/tb";
 import { TbCircleCheckFilled } from "react-icons/tb";
+import { RiStopCircleFill } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 
 interface RoomCardType {
@@ -50,12 +51,21 @@ const HouseRoomCard = ({ room }: RoomCardType) => {
         <div>{room.cleaningType}</div>
       </div>
       <div className="flex items-center justify-center h-[25%] w-full border-t-1 border-b-1 border-gray-500 gap-3">
-        <div className="text-2xl text-yellow-800">
-          {room.isKeyBack && <TbCircleKeyFilled />}
-        </div>
-        <div className="text-2xl text-blue-800">
-          {room.isCleaningComplete && <TbCircleCheckFilled />}
-        </div>
+        {room.isKeyBack && (
+          <div className="text-2xl text-yellow-800">
+            <TbCircleKeyFilled />
+          </div>
+        )}
+        {room.isWaitingCheck && !room.isCleaningComplete && (
+          <div className="text-2xl text-gray-800">
+            <RiStopCircleFill />
+          </div>
+        )}
+        {room.isWaitingCheck && room.isCleaningComplete && (
+          <div className="text-2xl text-blue-800">
+            <TbCircleCheckFilled />
+          </div>
+        )}
       </div>
       <div className="flex h-[60%] w-full mt-1 text-sm">
         <div className="flex flex-col w-1/2 gap-1">
