@@ -1,28 +1,20 @@
+"use client";
+
+import CreateForm from "@/app/components/create/CreateForm";
+
+import { useAppSelector } from "@/app/lib/hooks/hooks";
+import Changing from "@/app/components/create/Changing";
+import Success from "@/app/components/create/Success";
+
 const CreatePage = () => {
+  const { createRoomsStatus } = useAppSelector((state) => state.createRooms);
+
   return (
     <main className="bg-orange-100 h-[95vh] flex flex-col justify-center items-center">
-      <div className="flex gap-30">
-        <div className="bg-green-600 flex flex-col justify-center w-[350px] p-5 rounded-2xl">
-          <label className="flex justify-center mb-5 text-2xl font-medium">
-            1Fのデータを選択
-          </label>
-          <input
-            id="file_input"
-            type="file"
-            className="file:mr-4 file:rounded-full file:bg-gray-50 file:p-3 file:text-sm file:font-semibold cursor-pointer file:cursor-pointer"
-          />
-        </div>
-        <div className="bg-green-600 flex flex-col justify-center w-[350px] p-5 rounded-2xl">
-          <label className="flex justify-center mb-5 text-2xl font-medium">
-            2Fのデータを選択
-          </label>
-          <input
-            type="file"
-            id="2f"
-            className="file:mr-4 file:rounded-full file:bg-gray-50 file:p-3 file:text-sm file:font-semibold cursor-pointer file:cursor-pointer"
-          />
-        </div>
-      </div>
+      {createRoomsStatus === "idle" && <CreateForm />}
+      {createRoomsStatus === "pending" && <Changing />}
+      {createRoomsStatus === "succeeded" && <Success />}
+      {createRoomsStatus === "failed" && <div>エラーが発生しました;</div>}
     </main>
   );
 };
