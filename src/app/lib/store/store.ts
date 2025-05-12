@@ -4,6 +4,8 @@ import rooms1fReducer from "../features/rooms1f/rooms1fSlice";
 import rooms2fReducer from "../features/rooms2f/rooms2fSlice";
 import targetRoomReducer from "../features/targetRoom/targetRoomSlice";
 import isModalOpenReducer from "../features/modal/modalSlice";
+import isWaitingCheckReduce from "../features/isWaitingCheck/isWaitingCheckSlice";
+import isCleaningCompleteReducer from "../features/isCleaningComplete/isCleaningCompleteSlice";
 import createRoomsReducer from "../features/createRooms/createRoomsSlice";
 
 export const makeStore = () => {
@@ -14,6 +16,8 @@ export const makeStore = () => {
       rooms2f: rooms2fReducer,
       targetRoom: targetRoomReducer,
       isModalOpen: isModalOpenReducer,
+      isWaitingCheck: isWaitingCheckReduce,
+      isCleaningComplete: isCleaningCompleteReducer,
       createRooms: createRoomsReducer,
     },
   });
