@@ -1,5 +1,6 @@
 "use client";
 
+import Error from "@/app/components/common/error/Error";
 import Fetching from "@/app/components/common/fetching/Fetching";
 import FrontRoomCard from "@/app/components/front/roomCard/FrontRoomCard";
 import { useAppSelector } from "@/app/lib/hooks/hooks";
@@ -28,7 +29,7 @@ const FrontPage = () => {
       )}
       {/* データ取得失敗 */}
       {getRooms1fStatus === "failed" ||
-        (getRooms2fStatus === "failed" && <div>エラーが発生しました;</div>)}
+        (getRooms2fStatus === "failed" && <Error />)}
     </main>
   );
 };

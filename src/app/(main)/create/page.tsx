@@ -5,6 +5,7 @@ import CreateForm from "@/app/components/create/CreateForm";
 import { useAppSelector } from "@/app/lib/hooks/hooks";
 import Changing from "@/app/components/create/Changing";
 import Success from "@/app/components/create/Success";
+import Error from "@/app/components/common/error/Error";
 
 const CreatePage = () => {
   const { createRoomsStatus } = useAppSelector((state) => state.createRooms);
@@ -14,7 +15,7 @@ const CreatePage = () => {
       {createRoomsStatus === "idle" && <CreateForm />}
       {createRoomsStatus === "pending" && <Changing />}
       {createRoomsStatus === "succeeded" && <Success />}
-      {createRoomsStatus === "failed" && <div>エラーが発生しました;</div>}
+      {createRoomsStatus === "failed" && <Error />}
     </main>
   );
 };
