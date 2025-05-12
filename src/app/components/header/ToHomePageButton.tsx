@@ -20,7 +20,9 @@ const ToHomePageButton = () => {
     }
   };
 
-  return <div>{getButton()}</div>;
+  return (
+    <div className="text-sm sm:text-lg hidden sm:block">{getButton()}</div>
+  );
 };
 
 export default ToHomePageButton;

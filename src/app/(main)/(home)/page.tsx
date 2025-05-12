@@ -4,8 +4,8 @@ import ToHousePageButton from "@/app/components/home/ToHousePageButton";
 
 const page = () => {
   return (
-    <div className="bg-orange-100 h-[95vh] flex flex-col justify-center items-center gap-20">
-      <div className="flex items-center justify-center gap-20">
+    <div className="bg-orange-100 h-[92vh] flex flex-col justify-center items-center gap-20">
+      <div className="sm:flex items-center justify-center gap-20">
         <ToFrontPageButton />
         <ToHousePageButton />
       </div>

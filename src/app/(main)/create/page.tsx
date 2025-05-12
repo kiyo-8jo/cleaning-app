@@ -11,7 +11,7 @@ const CreatePage = () => {
   const { createRoomsStatus } = useAppSelector((state) => state.createRooms);
 
   return (
-    <main className="bg-orange-100 h-[95vh] flex flex-col justify-center items-center">
+    <main className="bg-orange-100 h-[92vh] flex flex-col justify-center items-center">
       {createRoomsStatus === "idle" && <CreateForm />}
       {createRoomsStatus === "pending" && <Changing />}
       {createRoomsStatus === "succeeded" && <Success />}

@@ -13,7 +13,7 @@ const ToFrontPageButton = () => {
   return (
     <div
       onClick={handleClick}
-      className="bg-blue-300 flex justify-center items-center w-50 h-20 text-center rounded-2xl font-bold text-xl"
+      className="bg-blue-300 flex justify-center items-center w-50 h-20 text-center rounded-2xl font-bold text-xl mb-20 sm:mb-0"
     >
       <Link href="/front" className="w-full leading-20">
         フロント用画面
