@@ -1,5 +1,6 @@
 "use client";
 
+import Error from "@/app/components/common/error/Error";
 import Fetching from "@/app/components/common/fetching/Fetching";
 import Modal from "@/app/components/house/modal/Modal";
 import HouseRoomCard from "@/app/components/house/roomCard/HouseRoomCard";
@@ -25,7 +26,7 @@ const HousePage = () => {
       {getRooms1fStatus === "succeeded" &&
         getRooms2fStatus === "succeeded" &&
         floorRooms.map((room) => <HouseRoomCard room={room} key={room.id} />)}
-        {/* モーダル表示 */}
+      {/* モーダル表示 */}
       {isModalOpen && <Modal />}
       {/* ロード中 */}
       {(getRooms1fStatus === "pending" || getRooms2fStatus === "pending") && (
@@ -33,7 +34,7 @@ const HousePage = () => {
       )}
       {/* データ取得失敗 */}
       {getRooms1fStatus === "failed" ||
-        (getRooms2fStatus === "failed" && <div>エラーが発生しました;</div>)}
+        (getRooms2fStatus === "failed" && <Error />)}
     </main>
   );
 };

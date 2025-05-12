@@ -1,9 +1,9 @@
-const Fetching = () => {
+const Error = () => {
   return (
     <div className="flex items-center justify-center h-[600px] font-semibold text-3xl">
-      データ取得中...
+      エラーが発生しました
     </div>
   );
 };
 
-export default Fetching;
+export default Error;

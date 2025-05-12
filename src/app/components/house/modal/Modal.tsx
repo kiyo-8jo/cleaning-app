@@ -1,5 +1,7 @@
 "use client";
 
+import { setIsCleaningComplete } from "@/app/lib/features/isCleaningComplete/isCleaningCompleteSlice";
+import { setIsWaitingCheck } from "@/app/lib/features/isWaitingCheck/isWaitingCheckSlice";
 import { setIsModalClose } from "@/app/lib/features/modal/modalSlice";
 import {
   editRoom1f,
@@ -12,22 +14,26 @@ import {
 import { setTargetRoom } from "@/app/lib/features/targetRoom/targetRoomSlice";
 import { useAppDispatch, useAppSelector } from "@/app/lib/hooks/hooks";
 import { RoomType } from "@/app/types/types";
-import { FormEventHandler, useState } from "react";
+import { FormEventHandler, useEffect } from "react";
 
 const Modal = () => {
   const dispatch = useAppDispatch();
   const { targetRoom } = useAppSelector((state) => state.targetRoom);
   const { is1f } = useAppSelector((state) => state.is1f);
-  const [isWaitingCheck, setIsWaitingCheck] = useState<boolean>(
-    targetRoom.isWaitingCheck
-  );
-  const [isCleaningComplete, setIsCleaningComplete] = useState<boolean>(
-    targetRoom.isCleaningComplete
+  const { isWaitingCheck } = useAppSelector((state) => state.isWaitingCheck);
+  const { isCleaningComplete } = useAppSelector(
+    (state) => state.isCleaningComplete
   );
 
+  // targetRoomに応じて初期化
+  useEffect(() => {
+    dispatch(setIsCleaningComplete(targetRoom.isCleaningComplete));
+    dispatch(setIsWaitingCheck(targetRoom.isWaitingCheck));
+  }, [dispatch, targetRoom.isCleaningComplete, targetRoom.isWaitingCheck]);
+
+  // submit用関数
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-
     // バリデーション
     if (!isWaitingCheck && isCleaningComplete) {
       alert("チェック待ちになっていません");
@@ -72,7 +78,7 @@ const Modal = () => {
                 name="is_waiting_check"
                 value="true"
                 checked={isWaitingCheck}
-                onChange={() => setIsWaitingCheck(true)}
+                onChange={() => dispatch(setIsWaitingCheck(true))}
               />
               true
             </label>
@@ -82,7 +88,7 @@ const Modal = () => {
                 name="is_waiting_check"
                 value="false"
                 checked={!isWaitingCheck}
-                onChange={() => setIsWaitingCheck(false)}
+                onChange={() => dispatch(setIsWaitingCheck(false))}
               />
               false
             </label>
@@ -97,7 +103,7 @@ const Modal = () => {
                 name="is_cleaning_complete"
                 value="true"
                 checked={isCleaningComplete}
-                onChange={() => setIsCleaningComplete(true)}
+                onChange={() => dispatch(setIsCleaningComplete(true))}
               />
               true
             </label>
@@ -107,7 +113,7 @@ const Modal = () => {
                 name="is_cleaning_complete"
                 value="false"
                 checked={!isCleaningComplete}
-                onChange={() => setIsCleaningComplete(false)}
+                onChange={() => dispatch(setIsCleaningComplete(false))}
               />
               false
             </label>
