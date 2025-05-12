@@ -21,7 +21,7 @@ const HousePage = () => {
   const floorRooms = is1f ? rooms1f : rooms2f;
 
   return (
-    <main className="bg-blue-50 flex flex-wrap justify-center h-max mx-5 mt-1 mb-3 p-3 rounded-2xl">
+    <main className="bg-blue-50 flex flex-wrap justify-center h-full mx-5 mt-1 mb-3 p-3 rounded-2xl">
       {/* データ取得成功 */}
       {getRooms1fStatus === "succeeded" &&
         getRooms2fStatus === "succeeded" &&

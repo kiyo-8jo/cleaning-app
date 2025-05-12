@@ -45,52 +45,50 @@ const CreateForm = () => {
     await dispatch(createNewRooms({ newRooms1f, newRooms2f }));
   };
   return (
-    <main>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-30 ">
-        <div className="flex gap-30">
-          <div className="bg-yellow-600 flex flex-col justify-center w-[350px] p-5 rounded-xl">
-            <label
-              htmlFor="1f_date"
-              className="flex justify-center mb-5 text-xl font-medium"
-            >
-              1Fのデータを選択
-            </label>
-            <input
-              id="1f_date"
-              name="1f_date"
-              type="file"
-              accept=".xlsx"
-              onChange={(e) => handleChange(e, "1f")}
-              className="file:mr-4 file:rounded-full file:bg-gray-50 file:p-3 file:text-sm file:font-semibold cursor-pointer file:cursor-pointer"
-            />
-          </div>
-          <div className="bg-yellow-600 flex flex-col justify-center w-[350px] p-5 rounded-2xl">
-            <label
-              htmlFor="2f_date"
-              className="flex justify-center mb-5 text-xl font-medium"
-            >
-              2Fのデータを選択
-            </label>
-            <input
-              type="file"
-              id="2f_date"
-              name="2f_date"
-              accept=".xlsx"
-              onChange={(e) => handleChange(e, "2f")}
-              className="file:mr-4 file:rounded-full file:bg-gray-50 file:p-3 file:text-sm file:font-semibold cursor-pointer file:cursor-pointer"
-            />
-          </div>
-        </div>
-        <div className="flex justify-center">
-          <button
-            type="submit"
-            className="w-[120px] bg-red-300 rounded-2xl p-3 text-xl font-medium cursor-pointer"
+    <form onSubmit={handleSubmit} className="flex flex-col sm:gap-30">
+      <div className="sm:flex gap-30">
+        <div className="bg-yellow-600 flex flex-col justify-center sm:w-[350px] w-[300px] p-5 rounded-xl">
+          <label
+            htmlFor="1f_date"
+            className="flex justify-center mb-5 text-xl font-medium"
           >
-            作成する
-          </button>
+            1Fのデータを選択
+          </label>
+          <input
+            id="1f_date"
+            name="1f_date"
+            type="file"
+            accept=".xlsx"
+            onChange={(e) => handleChange(e, "1f")}
+            className="file:mr-4 file:rounded-full file:bg-gray-50 file:p-3 file:text-sm file:font-semibold cursor-pointer file:cursor-pointer"
+          />
         </div>
-      </form>
-    </main>
+        <div className="bg-yellow-600 flex flex-col justify-center sm:w-[350px] w-[300px] p-5 rounded-2xl my-10 sm:my-0">
+          <label
+            htmlFor="2f_date"
+            className="flex justify-center mb-5 text-xl font-medium"
+          >
+            2Fのデータを選択
+          </label>
+          <input
+            type="file"
+            id="2f_date"
+            name="2f_date"
+            accept=".xlsx"
+            onChange={(e) => handleChange(e, "2f")}
+            className="file:mr-4 file:rounded-full file:bg-gray-50 file:p-3 file:text-sm file:font-semibold cursor-pointer file:cursor-pointer"
+          />
+        </div>
+      </div>
+      <div className="flex justify-center">
+        <button
+          type="submit"
+          className="w-[120px] bg-red-300 rounded-2xl p-3 text-xl font-medium cursor-pointer"
+        >
+          作成する
+        </button>
+      </div>
+    </form>
   );
 };
 

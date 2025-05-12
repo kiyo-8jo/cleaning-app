@@ -18,7 +18,7 @@ const ChangeFloorButtons = () => {
   }, [dispatch]);
 
   return (
-    <div className="flex items-center justify-center gap-50 h-[50px] mt-1">
+    <div className="flex items-center justify-center sm:gap-50 h-[50px] mt-1 gap-30">
       <div
         onClick={() => {
           dispatch(setIs1fTrue());
