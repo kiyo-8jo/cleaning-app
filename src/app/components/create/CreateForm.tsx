@@ -36,6 +36,11 @@ const CreateForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // バリデーション
+    if (newRooms1f?.length === 0 || newRooms2f?.length === 0) {
+      alert("データが選択されていません");
+      return;
+    }
     // データ更新用APIをたたく
     await dispatch(createNewRooms({ newRooms1f, newRooms2f }));
   };
