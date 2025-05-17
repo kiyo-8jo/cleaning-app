@@ -9,7 +9,7 @@ const LogoutButton = () => {
   return (
     <div>
       {pathName !== "/login" && (
-        <div onClick={signOut} className="text-sm sm:text-lg">
+        <div onClick={signOut} className="text-sm sm:text-lg cursor-pointer">
           ログアウト
         </div>
       )}
