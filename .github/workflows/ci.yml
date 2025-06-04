@@ -16,6 +16,9 @@ jobs:
     steps:
       #リポジトリのソースを持ってくる
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref}}
+          token: ${{secrets.WORKFLOW_TOKEN}}
         #node.jsを使えるようにする
       - name: Use Node.js ${{ matrix.node-version}}
         uses: actions/setup-node@v4
