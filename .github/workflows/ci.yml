@@ -1,0 +1,33 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ["20.x"]
+    permissions:
+      contents: write
+
+    steps:
+      #リポジトリのソースを持ってくる
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref}}
+          token: ${{secrets.WORKFLOW_TOKEN}}
+        #node.jsを使えるようにする
+      - name: Use Node.js ${{ matrix.node-version}}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version}}
+        #依存関係のインストール
+      - name: Install dependencies
+        run: npm ci
+        #フォーマット修正
+      - run: npm run format:fix
+        #修正したコードを再コミット
+      - uses: stefanzweifel/git-auto-commit-action@v5
