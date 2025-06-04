@@ -33,8 +33,6 @@ export const PUT = async (req: Request) => {
 
     await connectDb();
 
-    console.log(cleaningType)
-
     const editedRoom = await prisma.rooms1f.update({
       data: {
         cleaningType,
@@ -54,7 +52,7 @@ export const PUT = async (req: Request) => {
 
     return NextResponse.json(
       { message: "Success", editedRoom },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     return NextResponse.json({ message: "Error", error }, { status: 500 });

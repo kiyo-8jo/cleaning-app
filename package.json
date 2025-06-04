@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "next lint"
+    "format": "prettier --check \"**/*.{ts,tsx,js,jsx,cjs,mjs,md,json,lintstagedrc,yml,yaml}\" --cache",
+    "format:fix": "prettier --write \"**/*.{ts,tsx,js,jsx,cjs,mjs,md,json,lintstagedrc,yml,yaml}\" --cache",
+     "lint": "next lint && npx eslint . --ext .js,.jsx,.ts,.tsx,.mjs",
+   "lint:fix": "next lint --fix && npx eslint . --ext .js,.jsx,.ts,.tsx,.mjs --fix"
   },
   "dependencies": {
     "@prisma/client": "^6.7.0",

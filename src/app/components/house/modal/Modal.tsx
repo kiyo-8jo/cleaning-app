@@ -13,8 +13,9 @@ import {
 } from "@/app/lib/features/rooms2f/rooms2fSlice";
 import { setTargetRoom } from "@/app/lib/features/targetRoom/targetRoomSlice";
 import { useAppDispatch, useAppSelector } from "@/app/lib/hooks/hooks";
-import { RoomType } from "@/app/types/types";
-import { FormEventHandler, useEffect } from "react";
+import type { RoomType } from "@/app/types/types";
+import type { FormEventHandler} from "react";
+import { useEffect } from "react";
 
 const Modal = () => {
   const dispatch = useAppDispatch();
@@ -22,7 +23,7 @@ const Modal = () => {
   const { is1f } = useAppSelector((state) => state.is1f);
   const { isWaitingCheck } = useAppSelector((state) => state.isWaitingCheck);
   const { isCleaningComplete } = useAppSelector(
-    (state) => state.isCleaningComplete
+    (state) => state.isCleaningComplete,
   );
 
   // targetRoomに応じて初期化
@@ -61,10 +62,10 @@ const Modal = () => {
   };
 
   return (
-    <div className="w-full h-[100vh] fixed top-0 left-0 right-0 bottom-0 bg-gray-300/50 ">
+    <div className="fixed top-0 right-0 bottom-0 left-0 h-[100vh] w-full bg-gray-300/50">
       <form
         onSubmit={handleSubmit}
-        className="bg-gray-400 w-fit h-fit relative left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] p-5 flex flex-col items-center gap-10 rounded-2xl"
+        className="relative top-[50%] left-[50%] flex h-fit w-fit translate-x-[-50%] translate-y-[-50%] flex-col items-center gap-10 rounded-2xl bg-gray-400 p-5"
       >
         <h2 className="text-2xl font-bold">{targetRoom.id}の清掃状況</h2>
         <div className="flex flex-col gap-10">
@@ -72,7 +73,7 @@ const Modal = () => {
             <label htmlFor="is_waiting_check" className="mr-8">
               チェック待ち
             </label>
-            <label className="flex gap-2 mr-3">
+            <label className="mr-3 flex gap-2">
               <input
                 type="radio"
                 name="is_waiting_check"
@@ -97,7 +98,7 @@ const Modal = () => {
             <label htmlFor="is_cleaning_complete" className="mr-8">
               チェック完了
             </label>
-            <label className="flex gap-2 mr-3">
+            <label className="mr-3 flex gap-2">
               <input
                 type="radio"
                 name="is_cleaning_complete"
@@ -120,12 +121,12 @@ const Modal = () => {
           </div>
         </div>
         <div className="flex items-center gap-8">
-          <button className="cursor-pointer bg-blue-600 text-white p-2 rounded-2xl w-[100px]">
+          <button className="w-[100px] cursor-pointer rounded-2xl bg-blue-600 p-2 text-white">
             変更する
           </button>
           <div
             onClick={() => dispatch(setIsModalClose())}
-            className="cursor-pointer bg-blue-600 text-white p-2 rounded-2xl w-[100px]"
+            className="w-[100px] cursor-pointer rounded-2xl bg-blue-600 p-2 text-white"
           >
             キャンセル
           </div>

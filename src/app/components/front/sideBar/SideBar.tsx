@@ -12,8 +12,8 @@ import {
   objOptions,
   stayCleaningTypeOptions,
 } from "./options";
-import { FormEventHandler } from "react";
-import { RoomType } from "@/app/types/types";
+import type { FormEventHandler } from "react";
+import type { RoomType } from "@/app/types/types";
 import {
   editRoom1f,
   getRooms1f,
@@ -80,13 +80,13 @@ const SideBar = () => {
   return (
     <div>
       {/* タイトル */}
-      <h2 className="my-5 text-center font-bold text-2xl">
+      <h2 className="my-5 text-center text-2xl font-bold">
         {targetRoom.id}の編集
       </h2>
       <form onSubmit={handleSubmit}>
-        <div className="w-full flex flex-col">
+        <div className="flex w-full flex-col">
           {/* 清掃方法 */}
-          <div className="w-full flex items-center mb-3">
+          <div className="mb-3 flex w-full items-center">
             <label htmlFor="cleaning_type" className="w-1/2">
               清掃方法
             </label>
@@ -95,14 +95,14 @@ const SideBar = () => {
               id="cleaning_type"
               defaultValue={targetRoom.cleaningType}
               key={targetRoom.cleaningType}
-              className="w-1/2 bg-white rounded-md p-1 text-sm"
+              className="w-1/2 rounded-md bg-white p-1 text-sm"
             >
               {createOptions(cleaningTypeOptions)}
             </select>
           </div>
           {/* 連泊清掃方法 */}
-          <div className="w-full flex items-center mb-3">
-            <label htmlFor="stay_cleaning_type" className="w-1/2 text-s">
+          <div className="mb-3 flex w-full items-center">
+            <label htmlFor="stay_cleaning_type" className="text-s w-1/2">
               連泊清掃方法
             </label>
             <select
@@ -110,13 +110,13 @@ const SideBar = () => {
               id="stay_cleaning_type"
               defaultValue={targetRoom.stayCleaningType}
               key={targetRoom.stayCleaningType}
-              className="w-1/2 bg-white rounded-md p-1 text-sm"
+              className="w-1/2 rounded-md bg-white p-1 text-sm"
             >
               {createOptions(stayCleaningTypeOptions)}
             </select>
           </div>
           {/* 鍵の返却 */}
-          <div className="w-full flex items-center mb-3">
+          <div className="mb-3 flex w-full items-center">
             <label htmlFor="is_key_back" className="w-1/2">
               鍵の返却
             </label>
@@ -125,13 +125,13 @@ const SideBar = () => {
               id="is_key_back"
               defaultValue={Number(targetRoom.isKeyBack)}
               key={Number(targetRoom.isKeyBack)}
-              className="w-1/2 bg-white rounded-md p-1 text-sm"
+              className="w-1/2 rounded-md bg-white p-1 text-sm"
             >
               {createObjOptions(objOptions)}
             </select>
           </div>
           {/* 清掃完了 */}
-          <div className="w-full flex items-center mb-3">
+          <div className="mb-3 flex w-full items-center">
             <label htmlFor="is_cleaning_complete" className="w-1/2">
               清掃完了
             </label>
@@ -140,14 +140,14 @@ const SideBar = () => {
               id="is_cleaning_complete"
               defaultValue={Number(targetRoom.isCleaningComplete)}
               key={Number(targetRoom.isCleaningComplete)}
-              className="w-1/2 bg-white rounded-md p-1 text-sm"
+              className="w-1/2 rounded-md bg-white p-1 text-sm"
             >
               {createObjOptions(objOptions)}
             </select>
           </div>
 
           {/* 現在のベッド数 */}
-          <div className="w-full flex items-center mb-3">
+          <div className="mb-3 flex w-full items-center">
             <label htmlFor="now_beds" className="w-1/2">
               現在のベッド数
             </label>
@@ -156,13 +156,13 @@ const SideBar = () => {
               id="now_beds"
               defaultValue={targetRoom.nowBeds}
               key={targetRoom.nowBeds}
-              className="w-1/2 bg-white rounded-md p-1 text-sm"
+              className="w-1/2 rounded-md bg-white p-1 text-sm"
             >
               {createOptions(bedsOptions)}
             </select>
           </div>
           {/* 変更後のベッド数 */}
-          <div className="w-full flex items-center mb-3">
+          <div className="mb-3 flex w-full items-center">
             <label htmlFor="new_beds" className="w-1/2">
               変更後のベッド数
             </label>
@@ -171,13 +171,13 @@ const SideBar = () => {
               id="new_beds"
               defaultValue={targetRoom.newBeds}
               key={targetRoom.newBeds}
-              className="w-1/2 bg-white rounded-md p-1 text-sm"
+              className="w-1/2 rounded-md bg-white p-1 text-sm"
             >
               {createOptions(bedsOptions)}
             </select>
           </div>
           {/* 大人の人数 */}
-          <div className="w-full flex items-center mb-3">
+          <div className="mb-3 flex w-full items-center">
             <label htmlFor="adult" className="w-1/2">
               大人
             </label>
@@ -186,13 +186,13 @@ const SideBar = () => {
               id="adult"
               defaultValue={targetRoom.adult}
               key={targetRoom.adult}
-              className="w-1/2 bg-white rounded-md p-1 text-sm"
+              className="w-1/2 rounded-md bg-white p-1 text-sm"
             >
               {createOptions(guestOptions)}
             </select>
           </div>
           {/* 添い寝の人数 */}
-          <div className="w-full flex items-center mb-3">
+          <div className="mb-3 flex w-full items-center">
             <label htmlFor="inf" className="w-1/2">
               添寝
             </label>
@@ -201,13 +201,13 @@ const SideBar = () => {
               id="inf"
               defaultValue={targetRoom.inf}
               key={targetRoom.inf}
-              className="w-1/2 bg-white rounded-md p-1 text-sm"
+              className="w-1/2 rounded-md bg-white p-1 text-sm"
             >
               {createOptions(guestOptions)}
             </select>
           </div>
           {/* 子供添寝の人数 */}
-          <div className="w-full flex items-center mb-3">
+          <div className="mb-3 flex w-full items-center">
             <label htmlFor="kid_inf" className="w-1/2">
               子供添寝
             </label>
@@ -216,13 +216,13 @@ const SideBar = () => {
               id="kid_inf"
               defaultValue={targetRoom.kidInf}
               key={targetRoom.kidInf}
-              className="w-1/2 bg-white rounded-md p-1 text-sm"
+              className="w-1/2 rounded-md bg-white p-1 text-sm"
             >
               {createOptions(guestOptions)}
             </select>
           </div>
           {/* メモ */}
-          <div className="w-full flex items-center mb-3">
+          <div className="mb-3 flex w-full items-center">
             <label htmlFor="memo" className="flex w-1/2 items-center">
               メモ
             </label>
@@ -231,20 +231,20 @@ const SideBar = () => {
               id="memo"
               defaultValue={targetRoom.memo}
               key={targetRoom.memo}
-              className="w-1/2 bg-white font-sm resize-none h-[100px] rounded-md p-1"
+              className="font-sm h-[100px] w-1/2 resize-none rounded-md bg-white p-1"
             ></textarea>
           </div>
         </div>
-        <div className="flex my-5 items-center justify-center gap-15">
+        <div className="my-5 flex items-center justify-center gap-15">
           <button
             type="submit"
-            className="bg-yellow-100 w-[100px] py-1 rounded-2xl text-center font-semibold cursor-pointer"
+            className="w-[100px] cursor-pointer rounded-2xl bg-yellow-100 py-1 text-center font-semibold"
           >
             変更する
           </button>
           <div
             onClick={() => dispatch(setTargetRoom({}))}
-            className="bg-yellow-100 w-[100px] py-1 rounded-2xl text-center font-semibold cursor-pointer"
+            className="w-[100px] cursor-pointer rounded-2xl bg-yellow-100 py-1 text-center font-semibold"
           >
             キャンセル
           </div>

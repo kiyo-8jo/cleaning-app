@@ -1,4 +1,4 @@
-import { RoomType } from "@/app/types/types";
+import type { RoomType } from "@/app/types/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // データ取得用関数
@@ -9,7 +9,7 @@ export const getRooms2f = createAsyncThunk(
     const res = await fetch(`${url}/api/room/2f`, { cache: "no-store" });
     const data = await res.json();
     return data.rooms_2f;
-  }
+  },
 );
 
 // データ変更用関数
@@ -51,9 +51,8 @@ export const editRoom2f = createAsyncThunk(
       }),
     });
     return await res.json();
-  }
+  },
 );
-
 
 interface Rooms2fState {
   rooms2f: [] | RoomType[];

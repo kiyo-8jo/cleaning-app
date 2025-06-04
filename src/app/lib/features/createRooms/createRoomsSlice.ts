@@ -1,4 +1,4 @@
-import { RoomType } from "@/app/types/types";
+import type { RoomType } from "@/app/types/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 interface CreateNewRoomsProps {
@@ -19,7 +19,7 @@ export const createNewRooms = createAsyncThunk(
       },
       body: JSON.stringify({ newRooms1f, newRooms2f }),
     });
-  }
+  },
 );
 
 interface CreateRoomsState {

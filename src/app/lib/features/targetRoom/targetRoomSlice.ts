@@ -1,4 +1,4 @@
-import { RoomType } from "@/app/types/types";
+import type { RoomType } from "@/app/types/types";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface EmptyObjectType {

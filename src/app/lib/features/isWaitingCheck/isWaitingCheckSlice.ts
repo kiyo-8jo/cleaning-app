@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface IsWaitingCheckState {
-  isWaitingCheck: boolean ;
+  isWaitingCheck: boolean;
 }
 
 const initialState: IsWaitingCheckState = {

@@ -5,7 +5,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="w-full">
       <ChangeFloorButtons />
-      <div className="flex mt-1 gap-5">
+      <div className="mt-1 flex gap-5">
         {children}
         <SideBarContainer />
       </div>

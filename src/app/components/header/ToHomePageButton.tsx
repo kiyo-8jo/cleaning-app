@@ -21,7 +21,7 @@ const ToHomePageButton = () => {
   };
 
   return (
-    <div className="text-sm sm:text-lg hidden sm:block">{getButton()}</div>
+    <div className="hidden text-sm sm:block sm:text-lg">{getButton()}</div>
   );
 };
 

@@ -5,14 +5,14 @@ import ToHomePageButton from "@/app/components/header/ToHomePageButton";
 
 const Header = () => {
   return (
-    <div className="bg-red-100 flex items-center h-[8vh]">
+    <div className="flex h-[8vh] items-center bg-red-100">
       <div className="flex flex-1/3 justify-center font-bold">
         <Today />
       </div>
-      <div className="flex flex-1/3 justify-center font-bold text-xl">
+      <div className="flex flex-1/3 justify-center text-xl font-bold">
         <DisplayCurrentPage />
       </div>
-      <div className="flex flex-1/3 justify-center font-bold gap-10">
+      <div className="flex flex-1/3 justify-center gap-10 font-bold">
         <ToHomePageButton />
         <LogoutButton />
       </div>

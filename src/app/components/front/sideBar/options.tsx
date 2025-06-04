@@ -22,7 +22,7 @@ const createObjOptions = (
   targetOptions: {
     value: number;
     text: string;
-  }[]
+  }[],
 ) => {
   return targetOptions.map((option: { value: number; text: string }) => (
     <option value={option.value} key={option.value}>

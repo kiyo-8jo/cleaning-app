@@ -7,7 +7,7 @@ import NoTargetRoomSidebar from "./NoTargetRoomSidebar";
 const SideBarContainer = () => {
   const { targetRoom } = useAppSelector((state) => state.targetRoom);
   return (
-    <div className="bg-gray-300 w-[450px] h-[620px] mr-5 p-3 rounded-2xl min-w-[300px] sticky top-9">
+    <div className="sticky top-9 mr-5 h-[620px] w-[450px] min-w-[300px] rounded-2xl bg-gray-300 p-3">
       {Object.keys(targetRoom).length !== 0 ? (
         <SideBar />
       ) : (

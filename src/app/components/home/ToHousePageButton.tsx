@@ -13,7 +13,7 @@ const ToHousePageButton = () => {
   return (
     <div
       onClick={handleClick}
-      className="bg-yellow-300 flex justify-center items-center w-50 h-20 text-center rounded-2xl font-bold text-xl"
+      className="flex h-20 w-50 items-center justify-center rounded-2xl bg-yellow-300 text-center text-xl font-bold"
     >
       <Link href="/house" className="w-full leading-20">
         ハウス用画面

@@ -1,6 +1,6 @@
 const Error = () => {
   return (
-    <div className="flex items-center justify-center font-semibold text-3xl">
+    <div className="flex items-center justify-center text-3xl font-semibold">
       エラーが発生しました
     </div>
   );

@@ -9,10 +9,10 @@ import { useAppSelector } from "@/app/lib/hooks/hooks";
 const HousePage = () => {
   const { is1f } = useAppSelector((state) => state.is1f);
   const { rooms1f, getRooms1fStatus } = useAppSelector(
-    (state) => state.rooms1f
+    (state) => state.rooms1f,
   );
   const { rooms2f, getRooms2fStatus } = useAppSelector(
-    (state) => state.rooms2f
+    (state) => state.rooms2f,
   );
 
   const { isModalOpen } = useAppSelector((state) => state.isModalOpen);
@@ -21,7 +21,7 @@ const HousePage = () => {
   const floorRooms = is1f ? rooms1f : rooms2f;
 
   return (
-    <main className="bg-blue-50 flex flex-wrap justify-center h-full mx-5 mt-1 mb-3 p-3 rounded-2xl">
+    <main className="mx-5 mt-1 mb-3 flex h-full flex-wrap justify-center rounded-2xl bg-blue-50 p-3">
       {/* データ取得成功 */}
       {getRooms1fStatus === "succeeded" &&
         getRooms2fStatus === "succeeded" &&

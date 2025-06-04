@@ -18,7 +18,7 @@ const ChangeFloorButtons = () => {
   }, [dispatch]);
 
   return (
-    <div className="flex items-center justify-center sm:gap-50 h-[50px] mt-1 gap-30">
+    <div className="mt-1 flex h-[50px] items-center justify-center gap-30 sm:gap-50">
       <div
         onClick={() => {
           dispatch(setIs1fTrue());
@@ -26,8 +26,8 @@ const ChangeFloorButtons = () => {
           dispatch(setTargetRoom({}));
         }}
         className={`${
-          is1f && "border-2 pointer-events-none"
-        } bg-blue-200 px-5 py-2 text-center rounded-2xl cursor-pointer font-semibold`}
+          is1f && "pointer-events-none border-2"
+        } cursor-pointer rounded-2xl bg-blue-200 px-5 py-2 text-center font-semibold`}
       >
         1F
       </div>
@@ -38,8 +38,8 @@ const ChangeFloorButtons = () => {
           dispatch(setTargetRoom({}));
         }}
         className={`${
-          !is1f && "border-2 pointer-events-none"
-        } bg-blue-200 px-5 py-2 text-center rounded-2xl cursor-pointer font-semibold`}
+          !is1f && "pointer-events-none border-2"
+        } cursor-pointer rounded-2xl bg-blue-200 px-5 py-2 text-center font-semibold`}
       >
         2F
       </div>

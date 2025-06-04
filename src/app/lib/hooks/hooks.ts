@@ -1,10 +1,11 @@
+import type {
+  TypedUseSelectorHook} from "react-redux";
 import {
-  TypedUseSelectorHook,
   useDispatch,
   useSelector,
   useStore,
 } from "react-redux";
-import { AppStore, store } from "../store/store";
+import type { AppStore, store } from "../store/store";
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;

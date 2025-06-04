@@ -6,17 +6,17 @@ import {
   setNewRooms2f,
 } from "@/app/lib/features/createRooms/createRoomsSlice";
 import { useAppDispatch, useAppSelector } from "@/app/lib/hooks/hooks";
-import { RoomType } from "@/app/types/types";
+import type { RoomType } from "@/app/types/types";
 import * as XLSX from "xlsx";
 
 const CreateForm = () => {
   const dispatch = useAppDispatch();
   const { newRooms1f, newRooms2f } = useAppSelector(
-    (state) => state.createRooms
+    (state) => state.createRooms,
   );
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    floor: string
+    floor: string,
   ) => {
     // Excelデータの抽出とデータセット
     if (e.target.files?.length) {
@@ -46,11 +46,11 @@ const CreateForm = () => {
   };
   return (
     <form onSubmit={handleSubmit} className="flex flex-col sm:gap-30">
-      <div className="sm:flex gap-30">
-        <div className="bg-yellow-600 flex flex-col justify-center sm:w-[350px] w-[300px] p-5 rounded-xl">
+      <div className="gap-30 sm:flex">
+        <div className="flex w-[300px] flex-col justify-center rounded-xl bg-yellow-600 p-5 sm:w-[350px]">
           <label
             htmlFor="1f_date"
-            className="flex justify-center mb-5 text-xl font-medium"
+            className="mb-5 flex justify-center text-xl font-medium"
           >
             1Fのデータを選択
           </label>
@@ -60,13 +60,13 @@ const CreateForm = () => {
             type="file"
             accept=".xlsx"
             onChange={(e) => handleChange(e, "1f")}
-            className="file:mr-4 file:rounded-full file:bg-gray-50 file:p-3 file:text-sm file:font-semibold cursor-pointer file:cursor-pointer"
+            className="cursor-pointer file:mr-4 file:cursor-pointer file:rounded-full file:bg-gray-50 file:p-3 file:text-sm file:font-semibold"
           />
         </div>
-        <div className="bg-yellow-600 flex flex-col justify-center sm:w-[350px] w-[300px] p-5 rounded-2xl my-10 sm:my-0">
+        <div className="my-10 flex w-[300px] flex-col justify-center rounded-2xl bg-yellow-600 p-5 sm:my-0 sm:w-[350px]">
           <label
             htmlFor="2f_date"
-            className="flex justify-center mb-5 text-xl font-medium"
+            className="mb-5 flex justify-center text-xl font-medium"
           >
             2Fのデータを選択
           </label>
@@ -76,14 +76,14 @@ const CreateForm = () => {
             name="2f_date"
             accept=".xlsx"
             onChange={(e) => handleChange(e, "2f")}
-            className="file:mr-4 file:rounded-full file:bg-gray-50 file:p-3 file:text-sm file:font-semibold cursor-pointer file:cursor-pointer"
+            className="cursor-pointer file:mr-4 file:cursor-pointer file:rounded-full file:bg-gray-50 file:p-3 file:text-sm file:font-semibold"
           />
         </div>
       </div>
       <div className="flex justify-center">
         <button
           type="submit"
-          className="w-[120px] bg-red-300 rounded-2xl p-3 text-xl font-medium cursor-pointer"
+          className="w-[120px] cursor-pointer rounded-2xl bg-red-300 p-3 text-xl font-medium"
         >
           作成する
         </button>
