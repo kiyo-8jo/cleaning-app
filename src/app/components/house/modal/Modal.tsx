@@ -14,7 +14,7 @@ import {
 import { setTargetRoom } from "@/app/lib/features/targetRoom/targetRoomSlice";
 import { useAppDispatch, useAppSelector } from "@/app/lib/hooks/hooks";
 import type { RoomType } from "@/app/types/types";
-import type { FormEventHandler} from "react";
+import type { FormEventHandler } from "react";
 import { useEffect } from "react";
 
 const Modal = () => {
